@@ -1,0 +1,171 @@
+/* ---------------------------------------------------------------------------------------------- */
+/* ----------------------------------- GERAL ---------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------------- */
+body {
+    background-color: #f4f6f9; /* Fundo cinza suave para destacar o conteúdo branco */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Garante que o rodapé fica no fundo */
+}
+
+main {
+    flex: 1;
+    padding: 2rem 1rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto; /* Centraliza o conteúdo na página */
+}
+
+/* ---------------------------------------------------------------------------------------------- */
+/* ----------------------------------- NAV & MENU ----------------------------------------------- */
+/* ---------------------------------------------------------------------------------------------- */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 1rem;
+    position: relative;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.logo-section {
+    /* Removemos o background vermelho fixo para ficar mais limpo, ou ajustamos */
+    background-color: transparent; 
+}
+
+/* Ajuste na imagem do logo para não ficar com fundo estranho */
+.logo {
+    display: block;
+    max-height: 60px;
+    width: auto;
+}
+
+.nav-links {
+    list-style: none;
+    display: none; /* Mobile first: escondido */
+    flex-direction: column;
+    width: 100%;
+    background-color: #333;
+    position: absolute;
+    top: 100%; /* Fica logo abaixo do nav */
+    left: 0;
+    z-index: 1000;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links.active {
+    display: flex;
+}
+
+.nav-links li a {
+    display: block;
+    padding: 1rem;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    border-bottom: 1px solid #444;
+    transition: background-color 0.3s;
+}
+
+.nav-links li a:hover {
+    background-color: #e30613; /* Vermelho SENAI no hover */
+    color: white;
+}
+
+/* Menu Hambúrguer */
+.hamburger {
+    display: block;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 10px;
+}
+
+.hamburger .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: white;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Desktop */
+@media (min-width: 768px) {
+    .hamburger { display: none; }
+    
+    .nav-links {
+        display: flex;
+        flex-direction: row;
+        position: static;
+        width: auto;
+        background-color: transparent;
+    }
+
+    .nav-links li a {
+        border-bottom: none;
+        padding: 0 1.5rem;
+    }
+}
+
+/* ---------------------------------------------------------------------------------------------- */
+/* -------------------------------- FORMULÁRIO (CADASTRAR) -------------------------------------- */
+/* ---------------------------------------------------------------------------------------------- */
+.form-cadastro {
+    background-color: #ffffff;
+    padding: 2.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra elegante */
+    max-width: 600px;
+    margin: 2rem auto; /* Centraliza vertical e horizontalmente */
+}
+
+.form-cadastro input,
+.form-cadastro select {
+    margin-bottom: 1rem; /* Espaço entre os campos */
+    border: 1px solid #ced4da;
+    padding: 0.75rem;
+}
+
+.form-cadastro h2 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+/* Botão personalizado se não usar o do Bootstrap */
+.btn-custom {
+    background-color: #e30613;
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+.btn-custom:hover {
+    background-color: #b30000;
+}
+
+/* ---------------------------------------------------------------------------------------------- */
+/* -------------------------------- ACERVO (TABELA) --------------------------------------------- */
+/* ---------------------------------------------------------------------------------------------- */
+/* Removemos aquele CSS aninhado confuso e usamos classes limpas */
+
+.acervo-container {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    margin-top: 1rem;
+}
+
+.table-header {
+    background-color: #333;
+    color: white;
+}

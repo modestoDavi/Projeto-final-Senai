@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Livros - SENAI</title>
+    
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+    <header>
+        <section class="logo-section">
+            <img class="logo" src="/assets/img/Logo_SENAI_PRINCIPAL_VERMELHO.png" alt="Logo Senai" width="150px" height="auto">
+        </section>
+        <aside>
+            <nav>
+                <button class="hamburger" aria-label="Abrir menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="/pages/acervo.html">Acervo</a></li>
+                    <li><a href="/pages/cadastrar.html">Cadastrar</a></li>
+                    <li><a href="/pages/relatorio.html">Relatório</a></li>
+                </ul>
+            </nav>
+        </aside>
+    </header>
+
+    <main>
+        <section class="form-cadastro">
+            <h2 class="text-center mb-4">Novo Livro</h2>
+
+            <input id="codigo" class="form-control mb-3" type="text" placeholder="Código do Livro (Bipe aqui)" autofocus>
+            
+            <input id="titulo" class="form-control form-control-lg mb-3" type="text" placeholder="Título do Livro">
+            <input id="autor" class="form-control mb-3" type="text" placeholder="Autor">
+            <input id="editora" class="form-control mb-3" type="text" placeholder="Editora">
+            
+            <select id="categoria" class="form-select mb-3">
+                <option selected value="">Selecione a Categoria</option>
+                <option value="Aditivos">Aditivos</option>
+                <option value="Administração">Administração</option>
+                <option value="Análise Alimentos">Análise Alimentos</option>
+                <option value="Artes">Artes</option>
+                <option value="Automação">Automação</option>
+                <option value="Bebidas">Bebidas</option>
+                <option value="Biografia">Biografia</option>
+                <option value="Biologia">Biologia</option>
+                <option value="Biotecnologia">Biotecnologia</option>
+                <option value="Ciências Saúde">Ciências Saúde</option>
+                <option value="Confeitaria">Confeitaria</option>
+                <option value="Construção Civil">Construção Civil</option>
+                <option value="Contos">Contos</option>
+                <option value="Culinária">Culinária</option>
+                <option value="Educação">Educação</option>
+                <option value="Eletrônica">Eletrônica</option>
+                <option value="Eletricidade">Eletricidade</option>
+                <option value="Embalagem">Embalagem</option>
+                <option value="Ficção">Ficção</option>
+                <option value="Física">Física</option>
+                <option value="Frutas e Hortaliças">Frutas e Hortaliças</option>
+                <option value="Infanto Juvenil">Infanto Juvenil</option>
+                <option value="Informática">Informática</option>
+                <option value="Língua Inglesa">Língua Inglesa</option>
+                <option value="Língua Portuguesa">Língua Portuguesa</option>
+                <option value="Literatura Alemã">Literatura Alemã</option>
+                <option value="Literatura Americana">Literatura Americana</option>
+                <option value="Literatura Brasileira">Literatura Brasileira</option>
+                <option value="Literatura Estrangeira">Literatura Estrangeira</option>
+                <option value="Literatura Inglesa">Literatura Inglesa</option>
+                <option value="Literatura Portuguesa">Literatura Portuguesa</option>
+                <option value="Manipulação Alimentos">Manipulação Alimentos</option>
+                <option value="Matemática">Matemática</option>
+                <option value="Meio Ambiente">Meio Ambiente</option>
+                <option value="Metrologia">Metrologia</option>
+                <option value="Microbiologia">Microbiologia</option>
+                <option value="Microbiologia Alimentos">Microbiologia Alimentos</option>
+                <option value="Nutrição">Nutrição</option>
+                <option value="Nutrição Animal">Nutrição Animal</option>
+                <option value="Panificação">Panificação</option>
+                <option value="Poesia">Poesia</option>
+                <option value="Psicologia">Psicologia</option>
+                <option value="Química">Química</option>
+                <option value="Redação">Redação</option>
+                <option value="Revistas">Revistas</option>
+                <option value="Segurança">Segurança</option>
+                <option value="Segurança Alimentar">Segurança Alimentar</option>
+                <option value="Teatro">Teatro</option>
+                <option value="Tecnologias Alimentos">Tecnologia Alimentos</option>
+                <option value="Toxicologia">Toxicologia</option>
+            </select>
+
+            <button id="btnSalvar" type="button" class="btn btn-danger w-100 mt-3" style="font-weight: bold;">
+                CADASTRAR LIVRO
+            </button>
+        </section>
+    </main>
+
+    <footer>
+    </footer>
+
+    <script src="/assets/js/hamburguer.js"></script>
+
+    <script type="module">
+        // 1. Importação (Adicionei query e where)
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, collection, addDoc, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        // 2. Configuração
+        const firebaseConfig = {
+            apiKey: "AIzaSyAqCzcbTf4ZWwQKXGY5ELD3qjxjokay6Ds",
+            authDomain: "projeto-final-bb566.firebaseapp.com",
+            projectId: "projeto-final-bb566",
+            storageBucket: "projeto-final-bb566.firebasestorage.app",
+            messagingSenderId: "964611662890",
+            appId: "1:964611662890:web:b0988263a185c92da1cf53"
+        };
+
+        // 3. Inicializa
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // --- LEITOR DE CÓDIGO ---
+        const inputCodigo = document.getElementById('codigo');
+        const inputTitulo = document.getElementById('titulo');
+
+        inputCodigo.addEventListener('keydown', (evento) => {
+            if (evento.key === 'Enter') {
+                evento.preventDefault(); 
+                inputTitulo.focus();
+            }
+        });
+
+        // --- BOTÃO SALVAR COM VERIFICAÇÃO ---
+        document.getElementById('btnSalvar').addEventListener('click', async () => {
+            
+            const titulo = document.getElementById('titulo').value;
+            const codigo = document.getElementById('codigo').value; // O código lido
+            const autor = document.getElementById('autor').value;
+            const editora = document.getElementById('editora').value;
+            const categoria = document.getElementById('categoria').value;
+
+            // Validação básica
+            if (!titulo || !codigo) {
+                alert("Por favor, preencha pelo menos Título e Código!");
+                return;
+            }
+
+            try {
+                // === PASSO NOVO: VERIFICAR SE JÁ EXISTE ===
+                
+                // 1. Cria uma consulta: Vá na coleção 'livros' e procure onde o campo 'codigo' é igual ao 'codigo' digitado
+                const consultaCodigo = query(collection(db, "livros"), where("codigo", "==", codigo));
+                
+                // 2. Executa a busca
+                const resultadoBusca = await getDocs(consultaCodigo);
+
+                // 3. Se o resultado NÃO estiver vazio (!empty), significa que achou um livro igual
+                if (!resultadoBusca.empty) {
+                    alert("⚠️ ERRO: Já existe um livro cadastrado com este código de barras!");
+                    
+                    // Opcional: Limpar o campo código para a pessoa tentar outro
+                    document.getElementById('codigo').value = '';
+                    document.getElementById('codigo').focus();
+                    return; // PARA AQUI. Não deixa salvar.
+                }
+
+                // === SE PASSOU DAQUI, PODE SALVAR ===
+
+                await addDoc(collection(db, "livros"), {
+                    titulo: titulo,
+                    codigo: codigo,
+                    autor: autor,
+                    editora: editora,
+                    categoria: categoria,
+                    dataCadastro: new Date()
+                });
+
+                alert("✅ Livro cadastrado com sucesso!");
+                
+                // Limpa tudo
+                document.getElementById('titulo').value = '';
+                document.getElementById('codigo').value = '';
+                document.getElementById('autor').value = '';
+                document.getElementById('editora').value = '';
+                document.getElementById('categoria').value = '';
+
+                inputCodigo.focus();
+
+            } catch (erro) {
+                console.error("Erro:", erro);
+                alert("Erro ao processar: " + erro.message);
+            }
+        });
+    </script>
+</body>
+</html>
