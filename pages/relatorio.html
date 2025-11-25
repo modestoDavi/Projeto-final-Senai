@@ -4,17 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório de Indisponíveis - SENAI</title>
+
     <link rel="stylesheet" href="/assets/css/style.css">
-    <link rel="stylesheet" href="/assets/css/style.css">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-        
-    <title>Relatório</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
 
 <body>
     <header>
         <section class="logo-section">
-            <img class="logo" src="/assets/img/Logo_SENAI_PRINCIPAL_VERMELHO.png" alt="" width="150px" height="auto">
+            <img class="logo" src="/assets/img/Logo_SENAI_PRINCIPAL_VERMELHO.png" alt="Logo Senai" width="150px" height="auto">
         </section>
         <aside>
             <nav>
@@ -32,12 +31,50 @@
             </nav>
         </aside>
     </header>
+
     <main>
-        <section>
+        <div class="container acervo-container">
+            <h2 class="mb-4 text-center" style="color: #e30613;">Livros Emprestados</h2>
 
-        </section>
+            <div class="row mb-3">
+                <div class="col-12 col-md-6 offset-md-3">
+                    <div class="alert alert-warning text-center" role="alert">
+                        Exibindo apenas livros com status: <strong>Emprestado</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle table-striped">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Título</th>
+                            <th>Autor</th>
+                            <th>Editora</th>
+                            <th>Código</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabelaRelatorio">
+                        <tr>
+                            <td colspan="5" class="text-center">Carregando relatório...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="text-center mt-3">
+                <button onclick="window.location.reload()" class="btn btn-sm btn-outline-secondary">Atualizar Lista</button>
+            </div>
+        </div>
     </main>
-</body>
-<script src="/assets/js/hamburguer.js"></script>
 
+    <footer></footer>
+
+    <script src="/assets/js/hamburguer.js"></script>
+
+    <script src="/assets/js/relatorio.js" type="module">
+       
+    </script>
+</body>
 </html>

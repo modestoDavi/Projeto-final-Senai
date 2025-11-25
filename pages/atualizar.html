@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Livros - SENAI</title>
+    <title>Atualizar Livro - SENAI</title>
     
     <link rel="stylesheet" href="/assets/css/style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -18,9 +18,7 @@
         <aside>
             <nav>
                 <button class="hamburger" aria-label="Abrir menu">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
+                    <span class="bar"></span><span class="bar"></span><span class="bar"></span>
                 </button>
                 <ul class="nav-links">
                     <li><a href="/index.html">Home</a></li>
@@ -34,16 +32,35 @@
 
     <main>
         <section class="form-cadastro">
-            <h2 class="text-center mb-4">Novo Livro</h2>
+            <h2 class="text-center mb-4">Editar Livro</h2>
 
-            <input id="codigo" class="form-control mb-3" type="text" placeholder="Código do Livro (Bipe aqui)" autofocus required>
+            <input type="hidden" id="livroId">
+
+            <div class="mb-3">
+                <label class="form-label">Código</label>
+                <input id="codigo" class="form-control" type="text" placeholder="Código">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Título</label>
+                <input id="titulo" class="form-control form-control-lg" type="text" placeholder="Título do Livro">
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Autor</label>
+                    <input id="autor" class="form-control" type="text" placeholder="Autor">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Editora</label>
+                    <input id="editora" class="form-control" type="text" placeholder="Editora">
+                </div>
+            </div>
             
-            <input id="titulo" class="form-control form-control-lg mb-3" type="text" placeholder="Título do Livro" required>
-            <input id="autor" class="form-control mb-3" type="text" placeholder="Autor">
-            <input id="editora" class="form-control mb-3" type="text" placeholder="Editora">
-            
-            <select id="categoria" class="form-select mb-3" required>
-                <option selected value="">Selecione a Categoria</option>
+            <div class="mb-3">
+                <label class="form-label">Categoria</label>
+                <select id="categoria" class="form-select">
+                    <option selected value="">Selecione a Categoria</option>
                 <option value="Aditivos">Aditivos</option>
                 <option value="Administração">Administração</option>
                 <option value="Análise Alimentos">Análise Alimentos</option>
@@ -94,24 +111,26 @@
                 <option value="Teatro">Teatro</option>
                 <option value="Tecnologias Alimentos">Tecnologia Alimentos</option>
                 <option value="Toxicologia">Toxicologia</option>
-            </select>
-            <select id="status" class="form-select mb-3" required>
-                <option selected value="">Selecione o Status do Livro</option>
-                <option value="Disponível">Disponível</option>
-                <option value="Emprestado">Emprestado</option>
-            </select>
+                </select>
+            </div>
 
-            <button id="btnSalvar" type="button" class="btn btn-danger w-100 mt-3" style="font-weight: bold;">
-                CADASTRAR LIVRO
-            </button>
+            <div class="mb-3">
+                <label class="form-label">Status do Livro</label>
+                <select id="status" class="form-select bg-light">
+                    <option value="Disponível">Disponível</option>
+                    <option value="Emprestado">Emprestado</option>
+                </select>
+            </div>
+
+            <div class="d-flex gap-2 mt-4">
+                <a href="/pages/acervo.html" class="btn btn-secondary w-50">Cancelar</a>
+                <button id="btnAtualizar" type="button" class="btn btn-primary w-50 fw-bold">SALVAR ALTERAÇÕES</button>
+            </div>
         </section>
     </main>
 
-    <footer>
-    </footer>
-
     <script src="/assets/js/hamburguer.js"></script>
 
-    <script type="module" src="/assets/js/cadastrar.js"></script>
+    <script type="module" src="/assets/js/atualizar.js"></script>
 </body>
 </html>
