@@ -16,7 +16,10 @@ main {
     max-width: 1200px;
     margin: 0 auto; /* Centraliza o conteúdo na página */
 }
-
+h1{
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+}
 /* ---------------------------------------------------------------------------------------------- */
 /* ----------------------------------- NAV & MENU ----------------------------------------------- */
 /* ---------------------------------------------------------------------------------------------- */
@@ -169,3 +172,26 @@ nav {
     background-color: #333;
     color: white;
 }
+/* -------------------------------------------------------------------------------------------- */
+/* ------------------------------ Carrossel/Slider (tela inicial)------------------------------ */
+/* -------------------------------------------------------------------------------------------- */
+.carousel-container {
+            width: 100%;
+            max-width: 800px; /* Largura máxima no Desktop */
+            margin: 0 auto; 
+            padding: 20px;
+        }
+        .carousel-item img {
+            width: 100%;
+            /* aspect-ratio: 16/9 mantem o formato retangular (widescreen)*/
+            aspect-ratio: 16/9; 
+            object-fit: cover; /* Garante que a imagem preencha o espaço sem distorcer/esticar */
+            border-radius: 10px;
+        }
+
+        /* Ajuste fino para mobile (opcional): se quiser que no celular fique mais alto */
+        @media (max-width: 768px) {
+            .carousel-item img {
+                aspect-ratio: 4/3; /* No celular fica um pouco mais quadrado */
+            }
+        }
