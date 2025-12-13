@@ -16,23 +16,40 @@
 
 <body>
     <header>
-        <section class="logo-section">
-            <img class="logo" src="/assets/img/Logo_SENAI_PRINCIPAL_VERMELHO.png" alt="Logo Senai" width="150px"
-                height="auto">
-        </section>
-            <nav>
+        <div class="logo-nav-container">
+            <div class="logo-section">
+                <img class="logo" src="https://cdn-icons-png.flaticon.com/512/2858/2858842.png" alt="Logo SENAI"
+                    width="150" height="auto">
+            </div>
+
+            <!-- Menu de navegação -->
+            <div class="nav-container">
+                <!-- Menu hamburguer (mobile) -->
                 <button class="hamburger" aria-label="Abrir menu">
                     <span class="bar"></span>
                     <span class="bar"></span>
                     <span class="bar"></span>
                 </button>
+
+                <!-- Links do menu -->
                 <ul class="nav-links">
                     <li><a href="/index.html">Home</a></li>
                     <li><a href="/pages/acervo.html">Acervo</a></li>
                     <li><a href="/pages/cadastrar.html">Cadastrar</a></li>
+
+                    <li class="dropdown-hover">
+                        <a href="#" class="dropdown-link">
+                            Movimentação <span class="arrow-down">▼</span>
+                        </a>
+                        <ul class="dropdown-content">
+                            <li><a href="/pages/emprestimo.html">Empréstimo</a></li>
+                            <li><a href="/pages/devolucao.html">Devolução</a></li>
+                        </ul>
+                    </li>
                     <li><a href="/pages/relatorio.html">Relatório</a></li>
                 </ul>
-            </nav>
+            </div>
+        </div>
     </header>
 
 
@@ -81,15 +98,15 @@
         </div>
     </main>
 
-
     <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Biblioteca Pergamodria</p>
+            <p>Todos os direitos reservados</p>
+        </div>
     </footer>
-
-
-    <script src="/assets/js/hamburguer.js"></script>
-    <script src="/assets/js/acervo.js" type="module"></script>
 </body>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/js/hamburguer.js"></script>
+<script src="/assets/js/acervo.js" type="module"></script>
 
 </html>
-

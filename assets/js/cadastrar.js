@@ -1,4 +1,4 @@
-// 1. Importação (Adicionei query e where)
+// 1. Importação (COM query importado)
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getFirestore, collection, addDoc, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
@@ -31,46 +31,50 @@ inputCodigo.addEventListener('keydown', (evento) => {
 document.getElementById('btnSalvar').addEventListener('click', async () => {
 
     const titulo = document.getElementById('titulo').value;
-    const codigo = document.getElementById('codigo').value; // O código lido
+    const codigo = document.getElementById('codigo').value;
     const autor = document.getElementById('autor').value;
     const editora = document.getElementById('editora').value;
     const categoria = document.getElementById('categoria').value;
     const status = document.getElementById('status').value;
 
-    try {
-        // === PASSO NOVO: VERIFICAR SE JÁ EXISTE ===
+    // Validação básica
+    if (!titulo || !codigo || !categoria || !status) {
+        alert("Por favor, preencha todos os campos obrigatórios.");
+        return;
+    }
 
-        // 1. Cria uma consulta: Vá na coleção 'livros' e procure onde o campo 'codigo' é igual ao 'codigo' digitado
+    try {
+        // === PASSO 1: VERIFICAR SE JÁ EXISTE ===
+        // query() AGORA ESTÁ DISPONÍVEL
         const consultaCodigo = query(collection(db, "livros"), where("codigo", "==", codigo));
 
-        // 2. Executa a busca
+        // Executa a busca
         const resultadoBusca = await getDocs(consultaCodigo);
 
-        // 3. Se o resultado NÃO estiver vazio (!empty), significa que achou um livro igual
+        // Se o resultado NÃO estiver vazio, achou um livro igual
         if (!resultadoBusca.empty) {
-            alert("⚠️ ERRO: Já existe um livro cadastrado com este código de barras!");
-
-            // Opcional: Limpar o campo código para a pessoa tentar outro
+            alert("⚠️ ERRO: Já existe um livro cadastrado com este código!");
+            
+            // Limpar o campo código para a pessoa tentar outro
             document.getElementById('codigo').value = '';
             document.getElementById('codigo').focus();
-            return; // PARA AQUI. Não deixa salvar.
+            return;
         }
 
-        // === SE PASSOU DAQUI, PODE SALVAR ===
-
+        // === PASSO 2: CADASTRAR NOVO LIVRO ===
         await addDoc(collection(db, "livros"), {
             titulo: titulo,
             codigo: codigo,
-            autor: autor,
-            editora: editora,
+            autor: autor || "",
+            editora: editora || "",
             categoria: categoria,
             status: status,
-            dataCadastro: new Date()
+            dataCadastro: new Date().toISOString()
         });
 
         alert("✅ Livro cadastrado com sucesso!");
 
-        // Limpa tudo
+        // Limpa todos os campos
         document.getElementById('titulo').value = '';
         document.getElementById('codigo').value = '';
         document.getElementById('autor').value = '';
@@ -78,10 +82,11 @@ document.getElementById('btnSalvar').addEventListener('click', async () => {
         document.getElementById('categoria').value = '';
         document.getElementById('status').value = '';
 
+        // Foco no campo de código para próximo cadastro
         inputCodigo.focus();
 
     } catch (erro) {
-        console.error("Erro:", erro);
-        alert("Erro ao processar: " + erro.message);
+        console.error("Erro completo:", erro);
+        alert("Erro ao cadastrar livro: " + erro.message);
     }
 });

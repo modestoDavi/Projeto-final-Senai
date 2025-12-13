@@ -9,3 +9,19 @@ hamburger.addEventListener("click", () => {
     // Alterna a classe 'active' no botão (para a animação do "X")
     hamburger.classList.toggle("active");
 });
+
+// Fecha o menu ao clicar em um link (para mobile)
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        hamburger.classList.remove('active');
+    });
+});
+
+// Fecha o menu ao redimensionar para desktop
+window.addEventListener('resize', () => {
+    if (window.innerWidth >= 768) {
+        navLinks.classList.remove('active');
+        hamburger.classList.remove('active');
+    }
+});

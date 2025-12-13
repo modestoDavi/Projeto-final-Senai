@@ -4,131 +4,183 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atualizar Livro - SENAI</title>
-    
+    <title>Atualizar Livro</title>
+
     <link rel="stylesheet" href="/assets/css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
     <header>
-        <section class="logo-section">
-            <img class="logo" src="/assets/img/Logo_SENAI_PRINCIPAL_VERMELHO.png" alt="Logo Senai" width="150px" height="auto">
-        </section>
-            <nav>
+        <div class="logo-nav-container">
+            <div class="logo-section">
+                <img class="logo" src="https://cdn-icons-png.flaticon.com/512/2858/2858842.png" alt="Logo SENAI"
+                    width="150" height="auto">
+            </div>
+
+            <!-- Menu de navegação -->
+            <div class="nav-container">
+                <!-- Menu hamburguer (mobile) -->
                 <button class="hamburger" aria-label="Abrir menu">
-                    <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
                 </button>
+
+                <!-- Links do menu -->
                 <ul class="nav-links">
                     <li><a href="/index.html">Home</a></li>
                     <li><a href="/pages/acervo.html">Acervo</a></li>
                     <li><a href="/pages/cadastrar.html">Cadastrar</a></li>
+
+                    <li class="dropdown-hover">
+                        <a href="#" class="dropdown-link">
+                            Movimentação <span class="arrow-down">▼</span>
+                        </a>
+                        <ul class="dropdown-content">
+                            <li><a href="/pages/emprestimo.html">Empréstimo</a></li>
+                            <li><a href="/pages/devolucao.html">Devolução</a></li>
+                        </ul>
+                    </li>
                     <li><a href="/pages/relatorio.html">Relatório</a></li>
                 </ul>
-            </nav>
+            </div>
+        </div>
     </header>
 
     <main>
-        <section class="form-cadastro">
-            <h2 class="text-center mb-4">Editar Livro</h2>
+        <div id="loading" class="loading-message">
+            <div class="spinner-border text-danger" role="status">
+                <span class="visually-hidden">Carregando...</span>
+            </div>
+            <p class="mt-3">Carregando dados do livro...</p>
+        </div>
 
-            <input type="hidden" id="livroId">
+        <section id="form-section" class="form-cadastro" style="display: none;">
+            <h2 class="text-center mb-4" style="color: #e30613;">Editar Livro</h2>
 
-            <div class="mb-3">
-                <label class="form-label">Código</label>
-                <input id="codigo" class="form-control" type="text" placeholder="Código">
+            <div class="alert alert-info mb-4">
+                <p class="mb-0 mt-2">Edite as informações abaixo e clique em "Salvar Alterações".</p>
             </div>
 
             <div class="mb-3">
-                <label class="form-label">Título</label>
-                <input id="titulo" class="form-control form-control-lg" type="text" placeholder="Título do Livro">
+                <label class="form-label fw-bold">Código do Livro</label>
+                <input id="codigo" class="form-control" type="text" placeholder="Código" required>
+                <div class="form-text">Código único de identificação do livro</div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-bold">Título do Livro</label>
+                <input id="titulo" class="form-control form-control-lg" type="text" placeholder="Título do Livro"
+                    required>
             </div>
 
             <div class="row">
                 <div class="col-md-6 mb-3">
-                    <label class="form-label">Autor</label>
+                    <label class="form-label fw-bold">Autor</label>
                     <input id="autor" class="form-control" type="text" placeholder="Autor">
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label class="form-label">Editora</label>
+                    <label class="form-label fw-bold">Editora</label>
                     <input id="editora" class="form-control" type="text" placeholder="Editora">
                 </div>
             </div>
-            
+
             <div class="mb-3">
-                <label class="form-label">Categoria</label>
-                <select id="categoria" class="form-select">
-                    <option selected value="">Selecione a Categoria</option>
-                <option value="Aditivos">Aditivos</option>
-                <option value="Administração">Administração</option>
-                <option value="Análise Alimentos">Análise Alimentos</option>
-                <option value="Artes">Artes</option>
-                <option value="Automação">Automação</option>
-                <option value="Bebidas">Bebidas</option>
-                <option value="Biografia">Biografia</option>
-                <option value="Biologia">Biologia</option>
-                <option value="Biotecnologia">Biotecnologia</option>
-                <option value="Ciências Saúde">Ciências Saúde</option>
-                <option value="Confeitaria">Confeitaria</option>
-                <option value="Construção Civil">Construção Civil</option>
-                <option value="Contos">Contos</option>
-                <option value="Culinária">Culinária</option>
-                <option value="Educação">Educação</option>
-                <option value="Eletrônica">Eletrônica</option>
-                <option value="Eletricidade">Eletricidade</option>
-                <option value="Embalagem">Embalagem</option>
-                <option value="Ficção">Ficção</option>
-                <option value="Física">Física</option>
-                <option value="Frutas e Hortaliças">Frutas e Hortaliças</option>
-                <option value="Infanto Juvenil">Infanto Juvenil</option>
-                <option value="Informática">Informática</option>
-                <option value="Língua Inglesa">Língua Inglesa</option>
-                <option value="Língua Portuguesa">Língua Portuguesa</option>
-                <option value="Literatura Alemã">Literatura Alemã</option>
-                <option value="Literatura Americana">Literatura Americana</option>
-                <option value="Literatura Brasileira">Literatura Brasileira</option>
-                <option value="Literatura Estrangeira">Literatura Estrangeira</option>
-                <option value="Literatura Inglesa">Literatura Inglesa</option>
-                <option value="Literatura Portuguesa">Literatura Portuguesa</option>
-                <option value="Manipulação Alimentos">Manipulação Alimentos</option>
-                <option value="Matemática">Matemática</option>
-                <option value="Meio Ambiente">Meio Ambiente</option>
-                <option value="Metrologia">Metrologia</option>
-                <option value="Microbiologia">Microbiologia</option>
-                <option value="Microbiologia Alimentos">Microbiologia Alimentos</option>
-                <option value="Nutrição">Nutrição</option>
-                <option value="Nutrição Animal">Nutrição Animal</option>
-                <option value="Panificação">Panificação</option>
-                <option value="Poesia">Poesia</option>
-                <option value="Psicologia">Psicologia</option>
-                <option value="Química">Química</option>
-                <option value="Redação">Redação</option>
-                <option value="Revistas">Revistas</option>
-                <option value="Segurança">Segurança</option>
-                <option value="Segurança Alimentar">Segurança Alimentar</option>
-                <option value="Teatro">Teatro</option>
-                <option value="Tecnologias Alimentos">Tecnologia Alimentos</option>
-                <option value="Toxicologia">Toxicologia</option>
+                <label class="form-label fw-bold">Categoria</label>
+                <select id="categoria" class="form-select" required>
+                    <option value="">Selecione a Categoria</option>
+                    <option value="Aditivos">Aditivos</option>
+                    <option value="Administração">Administração</option>
+                    <option value="Análise Alimentos">Análise Alimentos</option>
+                    <option value="Artes">Artes</option>
+                    <option value="Automação">Automação</option>
+                    <option value="Bebidas">Bebidas</option>
+                    <option value="Biografia">Biografia</option>
+                    <option value="Biologia">Biologia</option>
+                    <option value="Biotecnologia">Biotecnologia</option>
+                    <option value="Ciências Saúde">Ciências Saúde</option>
+                    <option value="Confeitaria">Confeitaria</option>
+                    <option value="Construção Civil">Construção Civil</option>
+                    <option value="Contos">Contos</option>
+                    <option value="Culinária">Culinária</option>
+                    <option value="Educação">Educação</option>
+                    <option value="Eletrônica">Eletrônica</option>
+                    <option value="Eletricidade">Eletricidade</option>
+                    <option value="Embalagem">Embalagem</option>
+                    <option value="Ficção">Ficção</option>
+                    <option value="Física">Física</option>
+                    <option value="Frutas e Hortaliças">Frutas e Hortaliças</option>
+                    <option value="Infanto Juvenil">Infanto Juvenil</option>
+                    <option value="Informática">Informática</option>
+                    <option value="Língua Inglesa">Língua Inglesa</option>
+                    <option value="Língua Portuguesa">Língua Portuguesa</option>
+                    <option value="Literatura Alemã">Literatura Alemã</option>
+                    <option value="Literatura Americana">Literatura Americana</option>
+                    <option value="Literatura Brasileira">Literatura Brasileira</option>
+                    <option value="Literatura Estrangeira">Literatura Estrangeira</option>
+                    <option value="Literatura Inglesa">Literatura Inglesa</option>
+                    <option value="Literatura Portuguesa">Literatura Portuguesa</option>
+                    <option value="Manipulação Alimentos">Manipulação Alimentos</option>
+                    <option value="Matemática">Matemática</option>
+                    <option value="Meio Ambiente">Meio Ambiente</option>
+                    <option value="Metrologia">Metrologia</option>
+                    <option value="Microbiologia">Microbiologia</option>
+                    <option value="Microbiologia Alimentos">Microbiologia Alimentos</option>
+                    <option value="Nutrição">Nutrição</option>
+                    <option value="Nutrição Animal">Nutrição Animal</option>
+                    <option value="Panificação">Panificação</option>
+                    <option value="Poesia">Poesia</option>
+                    <option value="Psicologia">Psicologia</option>
+                    <option value="Química">Química</option>
+                    <option value="Redação">Redação</option>
+                    <option value="Revistas">Revistas</option>
+                    <option value="Segurança">Segurança</option>
+                    <option value="Segurança Alimentar">Segurança Alimentar</option>
+                    <option value="Teatro">Teatro</option>
+                    <option value="Tecnologias Alimentos">Tecnologia Alimentos</option>
+                    <option value="Toxicologia">Toxicologia</option>
                 </select>
             </div>
 
             <div class="mb-3">
-                <label class="form-label">Status do Livro</label>
-                <select id="status" class="form-select bg-light">
+                <label class="form-label fw-bold">Status do Livro</label>
+                <select id="status" class="form-select" required>
                     <option value="Disponível">Disponível</option>
                     <option value="Emprestado">Emprestado</option>
                 </select>
+                <div class="form-text">O status "Emprestado" aparecerá no relatório de livros emprestados</div>
+            </div>
+
+            <div class="alert alert-warning mt-4">
+                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                <strong>Atenção:</strong> Após salvar as alterações, o livro será atualizado no sistema.
             </div>
 
             <div class="d-flex gap-2 mt-4">
                 <a href="/pages/acervo.html" class="btn btn-secondary w-50">Cancelar</a>
-                <button id="btnAtualizar" type="button" class="btn btn-primary w-50 fw-bold">SALVAR ALTERAÇÕES</button>
+                <button id="btnAtualizar" type="button" class="btn btn-danger w-50 fw-bold">
+                    <i class="bi bi-check-circle me-2"></i>SALVAR ALTERAÇÕES
+                </button>
             </div>
         </section>
+
+        <div id="error-message" class="alert alert-danger d-none text-center"
+            style="max-width: 800px; margin: 40px auto;">
+            <h4>Livro não encontrado</h4>
+            <p>O livro que você está tentando editar não foi encontrado no sistema.</p>
+            <a href="/pages/acervo.html" class="btn btn-outline-danger mt-2">Voltar para o Acervo</a>
+        </div>
     </main>
-
-    <script src="/assets/js/hamburguer.js"></script>
-
-    <script type="module" src="/assets/js/atualizar.js"></script>
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Biblioteca Pergamodria</p>
+            <p>Todos os direitos reservados</p>
+        </div>
+    </footer>
 </body>
+<script src="/assets/js/hamburguer.js"></script>
+<script type="module" src="/assets/js/atualizar.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+
 </html>

@@ -2,11 +2,13 @@
 /* ----------------------------------- GERAL ---------------------------------------------------- */
 /* ---------------------------------------------------------------------------------------------- */
 body {
-    background-color: #f4f6f9; /* Fundo cinza suave para destacar o conteúdo branco */
+    background-color: #f4f6f9;
+    /* Fundo cinza suave para destacar o conteúdo branco */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Garante que o rodapé fica no fundo */
+    min-height: 100vh;
+    /* Garante que o rodapé fica no fundo */
 }
 
 main {
@@ -14,12 +16,15 @@ main {
     padding: 2rem 1rem;
     width: 100%;
     max-width: 1200px;
-    margin: 0 auto; /* Centraliza o conteúdo na página */
+    margin: 0 auto;
+    /* Centraliza o conteúdo na página */
 }
-h1{
+
+h1 {
     text-align: center;
     font-family: 'Playfair Display', serif;
 }
+
 /* ---------------------------------------------------------------------------------------------- */
 /* ----------------------------------- NAV & MENU ----------------------------------------------- */
 /* ---------------------------------------------------------------------------------------------- */
@@ -33,30 +38,89 @@ nav {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.logo-section {
-    /* Removemos o background vermelho fixo para ficar mais limpo, ou ajustamos */
-    background-color: transparent; 
+/* Container da logo alinhado com o nav */
+.logo-nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background-color: #333;
+    padding: 0 1rem;
+    height: 80px;
 }
 
-/* Ajuste na imagem do logo para não ficar com fundo estranho */
+/* Logo no lado esquerdo */
+.logo-section {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 10px 0;
+}
+
 .logo {
     display: block;
-    max-height: 60px;
+    max-height: 50px; /* Tamanho reduzido para mobile */
     width: auto;
+    transition: transform 0.3s ease;
 }
 
+.logo:hover {
+    transform: scale(1.05);
+}
+
+/* Menu de navegação alinhado à direita */
+.nav-container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+/* Menu hamburguer sempre visível em mobile */
+.hamburger {
+    display: block;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 10px;
+    margin-left: 15px;
+}
+
+.hamburger .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: white;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Animações do hamburguer para "X" */
+.hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Links do menu - mobile first (escondido) */
 .nav-links {
     list-style: none;
-    display: none; /* Mobile first: escondido */
+    display: none;
     flex-direction: column;
     width: 100%;
     background-color: #333;
     position: absolute;
-    top: 100%; /* Fica logo abaixo do nav */
+    top: 100%; /* Abaixo do header */
     left: 0;
     z-index: 1000;
     margin: 0;
     padding: 0;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 .nav-links.active {
@@ -70,49 +134,149 @@ nav {
     text-decoration: none;
     text-align: center;
     border-bottom: 1px solid #444;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
 }
 
 .nav-links li a:hover {
-    background-color: #e30613; /* Vermelho SENAI no hover */
+    background-color: #e30613; /* Vermelho SENAI */
     color: white;
+    padding-left: 1.5rem;
 }
 
-/* Menu Hambúrguer */
-.hamburger {
-    display: block;
-    cursor: pointer;
-    background: none;
-    border: none;
-    padding: 10px;
-}
-
-.hamburger .bar {
-    display: block;
-    width: 25px;
-    height: 3px;
-    margin: 5px auto;
-    background-color: white;
-    transition: all 0.3s ease-in-out;
-}
-
-/* Desktop */
+/* Desktop - Layout lado a lado */
 @media (min-width: 768px) {
-    .hamburger { display: none; }
+    .logo-nav-container {
+        padding: 0 2rem;
+    }
     
+    .logo {
+        max-height: 60px; /* Logo maior no desktop */
+    }
+    
+    /* Esconde o hamburguer no desktop */
+    .hamburger {
+        display: none;
+    }
+    
+    /* Menu horizontal no desktop */
     .nav-links {
-        display: flex;
+        display: flex !important; /* Força display flex */
         flex-direction: row;
         position: static;
         width: auto;
         background-color: transparent;
+        box-shadow: none;
     }
-
+    
+    .nav-links li {
+        margin-left: 0.5rem;
+    }
+    
     .nav-links li a {
         border-bottom: none;
-        padding: 0 1.5rem;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+    
+    .nav-links li a:hover {
+        background-color: #e30613;
+        color: white;
+        padding: 0.5rem 1rem; /* Mantém o padding no hover */
+    }
+    
+    /* Menu ativo - destaque vermelho */
+    .nav-links li a.active {
+        background-color: #e30613;
+        color: white;
     }
 }
+
+/* Desktop grande - mais espaçamento */
+@media (min-width: 992px) {
+    .logo-nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    .nav-links li {
+        margin-left: 1.5rem;
+    }
+    
+    .nav-links li a {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+    }
+}
+
+/* ---------------------------------------------------------------------------------------------- */
+/* -------------------------------- HEADER UNIFICADO -------------------------------------------- */
+/* ---------------------------------------------------------------------------------------------- */
+header {
+    background-color: #333;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+/* ---------------------------------------------------------------------------------------------*/
+/* -------------------------------------DROPDOWN----------------------------------------------- */
+/* ---------------------------------------------------------------------------------------------*/
+
+.dropdown-hover {
+    position: relative;
+    display: inline-block;
+}
+
+
+.dropdown-link {
+    color: #fff;
+    padding: 10px 15px;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+}
+
+.arrow-down {
+    margin-left: 5px;
+    font-size: 0.7em;
+    vertical-align: middle;
+}
+.dropdown-content {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 180px;
+    z-index: 10;
+    background-color: #f7f7f7;
+    border: 1px solid #ddd;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+.dropdown-content li a {
+    color: #333;
+    padding: 10px 15px;
+    text-decoration: none;
+    display: block;
+    white-space: nowrap;
+}
+
+.dropdown-hover:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content li a:hover {
+    background-color: #e2e6ea;
+    color:#e30613;
+
+}
+
 
 /* ---------------------------------------------------------------------------------------------- */
 /* -------------------------------- FORMULÁRIO (CADASTRAR) -------------------------------------- */
@@ -121,14 +285,17 @@ nav {
     background-color: #ffffff;
     padding: 2.5rem;
     border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra elegante */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    /* Sombra elegante */
     max-width: 600px;
-    margin: 2rem auto; /* Centraliza vertical e horizontalmente */
+    margin: 2rem auto;
+    /* Centraliza vertical e horizontalmente */
 }
 
 .form-cadastro input,
 .form-cadastro select {
-    margin-bottom: 1rem; /* Espaço entre os campos */
+    margin-bottom: 1rem;
+    /* Espaço entre os campos */
     border: 1px solid #ced4da;
     padding: 0.75rem;
 }
@@ -140,7 +307,7 @@ nav {
     font-weight: 600;
 }
 
-/* Botão personalizado se não usar o do Bootstrap */
+
 .btn-custom {
     background-color: #e30613;
     color: white;
@@ -151,20 +318,98 @@ nav {
     width: 100%;
     transition: background-color 0.3s;
 }
+
 .btn-custom:hover {
     background-color: #b30000;
+}
+/* ---------------------------------------------------------------------------------------------- */
+/* ------------------------------ EMPRÉSTIMO E DEVOLUÇÃO ---------------------------------------- */
+/* ---------------------------------------------------------------------------------------------- */
+
+#detalhesLivro {
+    border: 2px solid #dc3545; /* Borda vermelha para destaque */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+#detalhesLivro:hover {
+    transform: translateY(-2px);
+}
+
+#detalhesLivro #tituloLivro {
+    color: #333;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px dashed #ccc;
+}
+
+#detalhesLivro strong {
+    color: #495057;
+    min-width: 80px; /* Garante alinhamento das labels */
+    display: inline-block;
+}
+
+#formEmprestimo h5 {
+    color: #dc3545; /* Cor vermelha para o título da seção de empréstimo */
+    font-weight: 600;
+    border-bottom: 2px solid #dc3545;
+    padding-bottom: 5px;
+}
+
+#btnRegistrar {
+    background-color: #dc3545 !important; 
+    border-color: #dc3545 !important;
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    transition: background-color 0.2s;
+}
+
+#btnRegistrar:hover {
+    background-color: #c82333 !important;
+    border-color: #bd2130 !important;
+}
+
+#formDevolucao {
+    padding-top: 15px;
+}
+
+#btnDevolver {
+    background-color: #198754 !important; /* Verde sucesso */
+    border-color: #198754 !important;
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+#btnDevolver:hover {
+    background-color: #157347 !important;
+    border-color: #146c43 !important;
+}
+
+#dadosEmprestimo {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed #ccc;
+}
+
+#dadosEmprestimo p {
+    font-size: 1rem;
+    color: #333;
 }
 
 /* ---------------------------------------------------------------------------------------------- */
 /* -------------------------------- ACERVO (TABELA) --------------------------------------------- */
 /* ---------------------------------------------------------------------------------------------- */
-/* Removemos aquele CSS aninhado confuso e usamos classes limpas */
 
 .acervo-container {
     background-color: white;
     padding: 2rem;
     border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     margin-top: 1rem;
 }
 
@@ -172,26 +417,55 @@ nav {
     background-color: #333;
     color: white;
 }
+
 /* -------------------------------------------------------------------------------------------- */
 /* ------------------------------ Carrossel/Slider (tela inicial)------------------------------ */
 /* -------------------------------------------------------------------------------------------- */
 .carousel-container {
-            width: 100%;
-            max-width: 800px; /* Largura máxima no Desktop */
-            margin: 0 auto; 
-            padding: 20px;
-        }
-        .carousel-item img {
-            width: 100%;
-            /* aspect-ratio: 16/9 mantem o formato retangular (widescreen)*/
-            aspect-ratio: 16/9; 
-            object-fit: cover; /* Garante que a imagem preencha o espaço sem distorcer/esticar */
-            border-radius: 10px;
-        }
+    width: 100%;
+    max-width: 800px;
+    /* Largura máxima no Desktop */
+    margin: 0 auto;
+    padding: 20px;
+}
 
-        /* Ajuste fino para mobile (opcional): se quiser que no celular fique mais alto */
-        @media (max-width: 768px) {
-            .carousel-item img {
-                aspect-ratio: 4/3; /* No celular fica um pouco mais quadrado */
-            }
-        }
+.carousel-item img {
+    width: 100%;
+    /* aspect-ratio: 16/9 mantem o formato retangular (widescreen)*/
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    /* Garante que a imagem preencha o espaço sem distorcer/esticar */
+    border-radius: 10px;
+}
+
+/* Ajuste fino para mobile (opcional): se quiser que no celular fique mais alto */
+@media (max-width: 768px) {
+    .carousel-item img {
+        aspect-ratio: 4/3;
+        /* No celular fica um pouco mais quadrado */
+    }
+}
+
+/* -------------------------------------------------------------------------------------------- */
+/* -------------------------------------- Footer----------------------------------------------- */
+/* -------------------------------------------------------------------------------------------- */
+
+footer {
+    background-color: #333; /* Mesma cor do nav */
+    color: white;
+    padding: 1.5rem 1rem;
+    margin-top: auto;
+    text-align: center;
+    border-top: 2px solid #e30613;
+}
+
+footer p {
+    margin: 0.25rem 0;
+    color: #ccc;
+    font-size: 0.85rem;
+}
+
+footer p:first-child {
+    color: white;
+    font-weight: 500;
+}

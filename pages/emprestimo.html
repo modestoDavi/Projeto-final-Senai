@@ -4,11 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Relatório de Indisponíveis - SENAI</title>
+    <title>Registrar Empréstimo</title>
 
     <link rel="stylesheet" href="/assets/css/style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -50,43 +49,40 @@
     </header>
 
     <main>
-        <div class="container acervo-container">
-            <h2 class="mb-4 text-center" style="color: #e30613;">Livros Emprestados</h2>
+        <section class="form-cadastro">
+            <h2 class="text-center mb-4">Registrar Empréstimo</h2>
 
-            <div class="row mb-3">
-                <div class="col-12 col-md-6 offset-md-3">
-                    <div class="alert alert-warning text-center" role="alert">
-                        Exibindo apenas livros com status: <strong>Emprestado</strong>
-                    </div>
-                </div>
+            <div class="alert alert-warning text-center" id="alertaBusca">
+                Digite o **código** do livro para iniciar o empréstimo.
             </div>
 
-            <div class="table-responsive">
-                <table class="table table-hover align-middle table-striped">
-                    <thead class="table-dark">
-                        <tr>
-                            <th>Título</th>
-                            <th>Autor</th>
-                            <th>Editora</th>
-                            <th>Código</th>
-                            <th>Status</th>
-                            <th>Pessoa</th>
-                            <th>Email</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tabelaRelatorio">
-                        <tr>
-                            <td colspan="5" class="text-center">Carregando relatório...</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div id="buscaLivro">
+                <input id="codigoBusca" class="form-control mb-3" type="text" placeholder="Código do Livro" autofocus>
+                <button id="btnBuscar" type="button" class="btn btn-primary w-100 mb-4">Buscar Livro</button>
+            </div>
+
+            <div id="detalhesLivro" class="card bg-light p-3 mb-4 d-none">
+                <h5 class="card-title text-center text-danger" id="tituloLivro"></h5>
+                <p class="card-text mb-1"><strong>Autor:</strong> <span id="autorLivro"></span></p>
+                <p class="card-text mb-1"><strong>Código:</strong> <code id="codigoLivro"></code></p>
+                <p class="card-text mb-1"><strong>Status Atual:</strong> <span id="statusLivro" class="badge"></span>
+                </p>
+            </div>
+
+            <div id="formEmprestimo" class="d-none">
+                <h5 class="text-center mb-3">Dados da Pessoa</h5>
+                <input id="nomePessoa" class="form-control mb-3" type="text" placeholder="Nome Completo" required>
+                <input id="emailPessoa" class="form-control mb-3" type="email" placeholder="E-mail" required>
+
+                <button id="btnRegistrar" type="button" class="btn btn-danger w-100 mt-3 fw-bold">
+                    REGISTRAR EMPRÉSTIMO
+                </button>
             </div>
 
             <div class="text-center mt-3">
-                <button onclick="window.location.reload()" class="btn btn-sm btn-outline-secondary">Atualizar
-                    Lista</button>
+                <a href="/pages/acervo.html" class="btn btn-sm btn-outline-secondary">Voltar para Acervo</a>
             </div>
-        </div>
+        </section>
     </main>
     <footer>
         <div class="footer-content">
@@ -97,6 +93,6 @@
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="/assets/js/hamburguer.js"></script>
-<script src="/assets/js/relatorio.js" type="module"></script>
+<script type="module" src="/assets/js/emprestimo.js"></script>
 
 </html>
